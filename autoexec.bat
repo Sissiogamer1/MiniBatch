@@ -1,0 +1,110 @@
+@echo off
+color 1f
+cd %~dp0
+cd stats
+>nul find "sword1" sword.txt && (
+  set fight=1 >nul
+  set swordtype=Wooden Sword
+) || (
+  >nul find "sword2" sword.txt && (
+  set fight=2 >nul
+  set swordtype=Iron Sword
+) || (
+    >nul find "sword3" sword.txt && (
+  set fight=3 >nul
+  set swordtype=Diamond Sword
+)
+)
+)
+:: Check pick
+>nul find "pick1" pick.txt && (
+  set mine=1 >nul
+  set picktype=Wooden Pick
+) || (
+  >nul find "pick2" pick.txt && (
+  set mine=2 >nul
+  set picktype=Iron Pick
+) || (
+    >nul find "pick3" pick.txt && (
+  set mine=3 >nul
+  set picktype=Diamond Pick
+)
+)
+)
+:: Check axe
+>nul find "axe1" axe.txt && (
+  set chop=1 >nul
+  set axetype=Wooden Axe
+) || (
+  >nul find "axe2" axe.txt && (
+  set chop=2 >nul
+  set axetype=Iron Axe
+) || (
+    >nul find "axe3" axe.txt && (
+  set chop=3 >nul
+  set axetype=Diamond Axe
+)
+)
+)
+>nul find "yes" house.txt && (
+  set house=1 >nul
+) || (
+    set house=0 >nul
+)
+if %house% equ 1 (
+    set safe=1 >nul 
+)
+>nul find "yes" firstrun.txt && (
+  set firstrun=1 >nul
+) || (
+    set firstrun=0 >nul
+)
+if %firstrun% equ 1 (
+    set /a firstrunvar1=0
+    set /a firstrunvar2=0
+    set /a firstrunvar3=0
+    set /a firstrunchoose=0
+    
+)
+if %mine% equ 1 (
+    set /a mineloot=%random% %%26
+)
+if %mine% equ 2 (
+    set /a mineloot=%random% %%51
+)
+if %mine% equ 3 (
+    set /a mineloot=%random% %%101
+)
+if %fight% equ 1 (
+    set /a fightlootzombie=%random% %%9
+    set /a fightlootskeleton=%random% %%4
+    set /a fightlootspider=%random% %%7
+    set /a damage=%random% %%7
+)
+if %fight% equ 2 (
+    set /a fightlootzombie=%random% %%14
+    set /a fightlootskeleton=%random% %%7
+    set /a fightlootspider=%random% %%11
+    set /a damage=%random% %%5
+)
+if %fight% equ 3 (
+    set /a fightlootzombie=%random% %%27
+    set /a fightlootskeleton=%random% %%15
+    set /a fightlootspider=%random% %%26
+    set /a damage=%random% %%3
+)
+if %chop% equ 1 (
+    set /a choplootwood=%random% %%16
+    set /a choplootapple=%random% %%3
+)
+if %chop% equ 2 (
+    set /a choplootwood=%random% %%25
+    set /a choplootapple=%random% %%5
+)
+if %chop% equ 3 (
+    set /a choplootwood=%random% %%33
+    set /a choplootapple=%random% %%9
+)
+cd ..
+set /a health=20
+start minibatch.bat

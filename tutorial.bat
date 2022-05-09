@@ -1,27 +1,52 @@
 @echo off
-title MiniBatch
-echo Welcome back in MiniBatch v0.0.8!
-echo Sword: %swordtype%
-echo Pick: %picktype%
-echo Axe: %axetype%
-goto main
+cd %~dp0
+title MiniBatch Alpha v0.0.8
+echo Welcome in MiniBatch Alpha!
+echo This is still a testing phase, so anything that could be shown in this version could not be on the final release
+echo And anything could change
+timeout /t 2 /nobreak >nul
+echo Press any key to start MiniBatch
+pause >nul
+if %firstrun% equ 1 (
+    echo INTRODUCTION SAMPLE TEXT
+    echo You have a %swordtype%, a %picktype% and a %axetype%.
+    echo Press any key to continue
+    pause >nul
+    cls
+    goto tutorial
+)
 
-:main
+:tutorial
+cls
+echo In the alpha phase, you cant fight, chop and mine yourself, but the program does, randomly, depending on your tool
+echo When everything that must be done gets completed, you will be able to chop wood, fight enemies and mine in a cave
+echo For now, you will have a "lobby" where you choose what to do
+timeout /t 5 /nobreak >nul
+echo Press any key to continue
+pause >nul
+goto aftertutorialtext
+
+:aftertutorialtext
 cls
 echo 1. Go mine
 echo 2. Go fight
 echo 3. Go chop
 choice /c 123 /m "What do you want to do?"
 if %errorlevel% equ 1 (
-    goto mine
+    goto minetutorial
 )
 if %errorlevel% equ 2 (
-    goto fight
+    goto fighttutorial
 )
 if %errorlevel% equ 3 (
-    goto chop
+    goto choptutorial
 )
-:mine
+
+:minetutorial
+cls
+echo Loots will change depending on your tool (and your luck)
+echo Press any key to continue
+pause >nul
 cls
 echo Mining.
 timeout /t 1 /nobreak >nul
@@ -37,9 +62,13 @@ timeout /t 2 /nobreak >nul
 echo Press any key to continue
 pause >nul
 set
-goto main
+goto aftertutorialtext
 
-:fight
+:fighttutorial
+cls
+echo Monster's loots will change depending on your tool (and your luck)
+echo Press any key to continue
+pause >nul
 cls
 echo Fighting.
 timeout /t 1 /nobreak >nul
@@ -76,9 +105,13 @@ timeout /t 2 /nobreak >nul
 echo Press any key to continue
 pause >nul
 set
-goto main
+goto aftertutorialtext
 
-:chop
+:choptutorial
+cls
+echo Wood loots will change depending on your tool (and your luck)
+echo Press any key to continue
+pause >nul
 cls
 echo Chopping.
 timeout /t 1 /nobreak >nul
@@ -93,4 +126,10 @@ echo You chopped %choplootwood% Wood Planks and %choplootapple% Apples with your
 timeout /t 2 /nobreak >nul
 echo Press any key to continue
 pause >nul
-goto main
+cls
+echo Tutorial ended!
+cd stats
+echo no > firstrun.txt
+timeout /t 2 /nobreak >nul
+cd ..
+start minibatch.bat

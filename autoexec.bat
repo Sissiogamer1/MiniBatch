@@ -56,15 +56,9 @@ if %house% equ 1 (
 )
 >nul find "yes" firstrun.txt && (
   set firstrun=1 >nul
-) || (
-    set firstrun=0 >nul
 )
-if %firstrun% equ 1 (
-    set /a firstrunvar1=0
-    set /a firstrunvar2=0
-    set /a firstrunvar3=0
-    set /a firstrunchoose=0
-    
+>nul find "no" firstrun.txt && (
+  set firstrun=0 >nul
 )
 if %mine% equ 1 (
     set /a mineloot=%random% %%26
@@ -107,4 +101,9 @@ if %chop% equ 3 (
 )
 cd ..
 set /a health=20
+if %firstrun% equ 1 (
+  start tutorial.bat
+)
+if %firstrun% equ 0 (
 start minibatch.bat
+)

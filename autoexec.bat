@@ -52,7 +52,7 @@ cd stats
     set house=0 >nul
 )
 if %house% equ 1 (
-    set safe=1 >nul 
+  set safe=1 >nul 
 )
 >nul find "yes" firstrun.txt && (
   set firstrun=1 >nul
@@ -60,6 +60,9 @@ if %house% equ 1 (
 >nul find "no" firstrun.txt && (
   set firstrun=0 >nul
 )
+cd ..
+cd userinv
+for /f "delims=" %%A in (file.txt) do set "%%A"
 if %mine% equ 1 (
     set /a mineloot=%random% %%26
 )
@@ -105,5 +108,8 @@ if %firstrun% equ 1 (
   start tutorial.bat
 )
 if %firstrun% equ 0 (
-start minibatch.bat
+  cd stats
+  echo no > firstrun.txt
+  cd ..
+  start minibatch.bat
 )

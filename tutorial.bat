@@ -1,7 +1,8 @@
 @echo off
 cd %~dp0
-title MiniBatch Alpha v0.0.8
+title MiniBatch Alpha Tutorial
 echo Welcome in MiniBatch Alpha!
+echo And now, in version 0.1, now considered stable!
 echo This is still a testing phase, so anything that could be shown in this version could not be on the final release
 echo And anything could change
 timeout /t 2 /nobreak >nul
@@ -91,12 +92,11 @@ set /a health=%currenthealth%
 if %health% lss 1 (
     timeout /t 1 /nobreak >nul
     cls
-    echo ██  ██   ██████  ██    ██     ██████  ██ ███████ ██████  
-    echo ██  ██  ██    ██ ██    ██     ██   ██ ██ ██      ██   ██ 
-    echo  ████   ██    ██ ██    ██     ██   ██ ██ █████   ██   ██ 
-    echo   ██    ██    ██ ██    ██     ██   ██ ██ ██      ██   ██ 
-    echo   ██     ██████   ██████      ██████  ██ ███████ ██████  
-    echo Sorry for the inconvenience, but this text format is not supported in cmd, this problem will be fixed 
+    echo ::  ::   ::::::  ::    ::     ::::::  :: ::::::: ::::::  
+    echo ::  ::  ::    :: ::    ::     ::   :: :: ::      ::   :: 
+    echo  ::::   ::    :: ::    ::     ::   :: :: :::::   ::   :: 
+    echo   ::    ::    :: ::    ::     ::   :: :: ::      ::   :: 
+    echo   ::     ::::::   ::::::      ::::::  :: ::::::: ::::::  
     timeout /t 3 /nobreak >nul
     echo In this alpha version, nothing will change if you die and your health will be back to 20
     set /a health=20

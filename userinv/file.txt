@@ -1,0 +1,7 @@
+allminelootiron=0
+allminelootdiamond=0
+allfightlootzombie=0
+allfightlootskeleton=0
+allfightlootspider=0
+allchoplootwood=0
+allchoplootapple=0

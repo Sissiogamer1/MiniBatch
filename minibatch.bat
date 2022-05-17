@@ -1,7 +1,7 @@
 @echo off
 title MiniBatch
 cd %~dp0
-echo Welcome back in MiniBatch v0.1!
+echo Welcome back in MiniBatch v0.1_2!
 echo Sword: %swordtype%
 echo Pick: %picktype%
 echo Axe: %axetype%
@@ -81,7 +81,6 @@ cd userinv
     echo allchoplootapple=%allchoplootapple%
 ) > file.txt
 cd ..
-pause
 if %mine% equ 1 (
     set /a mineloot=%random% %%26
 )
@@ -163,6 +162,7 @@ cd userinv
     echo allchoplootwood=%allchoplootwood%
     echo allchoplootapple=%allchoplootapple%
 ) > file.txt
+cd ..
 if %fight% equ 1 (
     set /a fightlootzombie=%random% %%9
     set /a fightlootskeleton=%random% %%4
@@ -215,6 +215,7 @@ set /a currentallchoplootwood=%allchoplootwood%+%choplootwood%
 set /a currentallchoplootapple=%allchoplootapple%+%choplootapple%
 set /a allchoplootwood=%currentallchoplootwood%
 set /a allchoplootapple=%currentallchoplootapple%
+cd userinv
 (
     echo allminelootiron=%allminelootiron%
     echo allminelootdiamond=%allminelootdiamond%
@@ -224,6 +225,7 @@ set /a allchoplootapple=%currentallchoplootapple%
     echo allchoplootwood=%allchoplootwood%
     echo allchoplootapple=%allchoplootapple%
 ) > file.txt
+cd ..
 if %chop% equ 1 (
     set /a choplootwood=%random% %%16
     set /a choplootapple=%random% %%3

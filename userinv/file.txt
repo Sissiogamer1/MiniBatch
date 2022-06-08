@@ -5,3 +5,4 @@ allfightlootskeleton=0
 allfightlootspider=0
 allchoplootwood=0
 allchoplootapple=0
+health=20

@@ -2,20 +2,74 @@
 cd %~dp0
 title MiniBatch Alpha Tutorial
 echo Welcome in MiniBatch Alpha!
-echo And now, in version 0.1, now considered stable!
 echo This is still a testing phase, so anything that could be shown in this version could not be on the final release
 echo And anything could change
 timeout /t 2 /nobreak >nul
 echo Press any key to start MiniBatch
 pause >nul
-if %firstrun% equ 1 (
-    echo INTRODUCTION SAMPLE TEXT
-    echo You have a %swordtype%, a %picktype% and a %axetype%.
-    echo Press any key to continue
-    pause >nul
-    cls
-    goto tutorial
-)
+cls
+echo You find yourself in an island, what do you remember?
+timeout /t 2 /nobreak >nul
+echo.
+echo Nothing...
+timeout /t 2 /nobreak >nul
+echo.
+echo Don't you really remember anything? Do you remember how you got here?
+timeout /t 3 /nobreak >nul
+echo.
+echo No
+echo I don't even remember who your are
+timeout /t 3 /nobreak >nul
+echo.
+echo Hey?
+echo You there?
+timeout /t 2 /nobreak >nul
+echo.
+echo ...
+timeout /t 1 /nobreak >nul
+echo Uh, i guess if i just imagined this...
+timeout /t 1 /nobreak >nul
+echo What do i have? I must survive
+echo I have
+timeout /t 1 /nobreak >nul
+cls
+echo You find yourself in an island, what do you remember?
+echo.
+echo.
+echo Don't you really remember anything? Do you remember how you got here?
+echo.
+echo No
+echo I don't even remember who your are
+echo.
+echo Hey?
+echo You there?
+echo.
+echo ...
+echo Uh, i guess if i just imagined this...
+echo What do i have? I must survive
+echo I have...
+timeout /t 1 /nobreak >nul
+cls
+echo You find yourself in an island, what do you remember?
+echo.
+echo.
+echo Don't you really remember anything? Do you remember how you got here?
+echo.
+echo No
+echo I don't even remember who your are
+echo.
+echo Hey?
+echo You there?
+echo.
+echo ...
+echo Uh, i guess if i just imagined this...
+echo What do i have? I must survive
+echo I have a %picktype%, a %swordtype% and a %axetype%
+timeout /t 1 /nobreak >nul
+echo Press any key to continue
+pause >nul
+cls
+goto tutorial
 
 :tutorial
 cls

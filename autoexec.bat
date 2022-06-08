@@ -16,7 +16,6 @@ cd stats
 )
 )
 )
-:: Check pick
 >nul find "pick1" pick.txt && (
   set mine=1 >nul
   set picktype=Wooden Pick
@@ -31,7 +30,6 @@ cd stats
 )
 )
 )
-:: Check axe
 >nul find "axe1" axe.txt && (
   set chop=1 >nul
   set axetype=Wooden Axe
@@ -103,7 +101,6 @@ if %chop% equ 3 (
     set /a choplootapple=%random% %%9
 )
 cd ..
-set /a health=20
 if %firstrun% equ 1 (
   start tutorial.bat
 )
@@ -113,3 +110,4 @@ if %firstrun% equ 0 (
   cd ..
   start minibatch.bat
 )
+exit

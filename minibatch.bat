@@ -1,7 +1,9 @@
 @echo off
 title MiniBatch
+SETLOCAL EnableDelayedExpansion
 cd %~dp0
-echo Welcome back in MiniBatch Alpha v0.1.3!
+echo Welcome back in MiniBatch Alpha v0.1.9!
+echo This versions fixes all bugs of the last version, v0.1.3, to provide you the best experience possible!
 echo Sword: %swordtype%
 echo Pick: %picktype%
 echo Axe: %axetype%
@@ -119,39 +121,52 @@ if %health% lss 1 (
     echo In this alpha version, nothing will change if you die and your health will be back to 20
     set /a health=20
 )
-SETLOCAL EnableDelayedExpansion
-if %health% lss 10 (
-    if %health% gtr 0 (
+if !health! lss 10 (
+    if !health! gtr 0 (
         choice /m "Heal yourself with an apple?"
         if !errorlevel! equ 1 (
-            set /a currenthealth=!health!+2
-            set /a health=!currenthealth!
-            echo You health is now !health!
-            set /a currentallchoplootapple=!allchoplootapple!-2
-            set /a allchoplootapple=!currentallchoplootapple!
-            timeout /t 1 /nobreak >nul
-            echo Press any key to continue
-            pause >nul
-            cd %~dp0
-            cd userinv
-            (
-                echo allminelootiron=%allminelootiron%
-                echo allminelootdiamond=%allminelootdiamond%
-                echo allfightlootzombie=%allfightlootzombie%
-                echo allfightlootskeleton=%allfightlootskeleton%
-                echo allfightlootspider=%allfightlootspider%
-                echo allchoplootwood=%allchoplootwood%
-                echo allchoplootapple=!allchoplootapple!
-                echo health=!health!
-            ) > file.txt
-            for /f "delims=" %%A in (file.txt) do set "%%A"
-            cd ..
+            set /a "currentallchoplootapple=!allchoplootapple!-1" && (
+                if defined currentallchoplootapple (
+                    if !currentallchoplootapple! lss 0 (
+                        set tempvar=1
+                        echo You don't have enough apples to heal yourself
+                        set /a "currentallchoplootapple=!allchoplootapple!+1" >nul
+                        timeout /t 1 /nobreak >nul
+                        echo Press any key to continue
+                        pause >nul
+                    ) else (
+                        set /a "allchoplootapple=!currentallchoplootapple!" >nul
+                        set /a "currenthealth=!health!+4"
+                        set /a "health=!currenthealth!"
+                        echo You health is now !health!
+                    )
+                    cd "%~dp0"
+                    cd "userinv"
+                    (
+                        echo allminelootiron=!allminelootiron!
+                        echo allminelootdiamond=!allminelootdiamond!
+                        echo allfightlootzombie=!allfightlootzombie!
+                        echo allfightlootskeleton=!allfightlootskeleton!
+                        echo allfightlootspider=!allfightlootspider!
+                        echo allchoplootwood=!allchoplootwood!
+                        echo allchoplootapple=!allchoplootapple!
+                        echo health=!health!
+                    ) > file.txt
+                    for /f "usebackqdelims=" %%A in ("file.txt") do (
+                        set "%%A"
+                    )
+                    cd ""..""
+                )
+            )
         )
     )
 )
-timeout /t 2 /nobreak >nul
-echo Press any key to continue
-pause >nul
+if not !tempvar! equ 1 (
+    set tempvar=
+    timeout /t 2 /nobreak >nul
+    echo Press any key to continue
+    pause >nul
+)
 set /a currentallfightlootskeleton=%allfightlootskeleton%+%fightlootskeleton%
 set /a currentallfightlootzombie=%allfightlootzombie%+%fightlootzombie%
 set /a currentallfightlootspider=%allfightlootspider%+%fightlootspider%
@@ -194,7 +209,6 @@ set /a allchoplootapple=%currentallchoplootapple%
 goto save
 
 :save
-cd %~dp0
 cd userinv
 (
     echo allminelootiron=%allminelootiron%

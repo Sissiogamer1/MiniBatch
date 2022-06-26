@@ -1,5 +1,119 @@
 @echo off
-title MiniBatch
+title MiniBatch plus
+
+
+::Main menu
+:mainmenu
+cls
+echo MiniBatch
+echo ---------
+echo 1.Play
+echo 2.Help
+echo 3.Quit
+echo ---------
+echo Version: Alpha v0.1.9
+echo.
+choice /c 123 /m "Where do you want to go?"
+
+if %errorlevel% equ 1 (
+    goto start
+)
+if %errorlevel% equ 2 (
+    goto helpmenu
+)
+if %errorlevel% equ 3 (
+    exit
+)
+
+goto mainmenu
+
+::Helpmenu
+:helpmenu
+cls
+echo Help
+echo ---------
+echo 1.Return
+echo 2.About
+echo 3.Credits
+echo 4.Instructions
+echo ---------
+echo.
+choice /c 1234 /m "Where do you want to go?"
+
+if %errorlevel% equ 1 (
+    goto mainmenu
+)
+if %errorlevel% equ 2 (
+    goto aboutmenu
+)
+if %errorlevel% equ 3 (
+    goto creditsmenu
+)
+if %errorlevel% equ 4 (
+    goto instructions
+)
+goto helpmenu
+
+::About menu
+:aboutmenu
+cls
+echo About
+echo ---------
+echo A game inspired by Minicraft
+echo and Minicraft plus
+echo made in Batch
+echo ---------
+echo 1.Return
+echo.
+choice /c 1 /m "Return?"
+
+if %errorlevel% equ 1 (
+    goto helpmenu
+)
+
+goto aboutmenu
+
+
+::Credits menu (Including me)
+:creditsmenu
+cls
+echo Credits
+echo ---------
+echo Main menus
+echo GladfanIsHere
+echo Creator
+echo Sissiogamer1
+echo ---------
+echo 1.Return
+echo.
+choice /c 1 /m "Return?"
+
+if %errorlevel% equ 1 (
+    goto helpmenu
+)
+
+goto creditsmenu
+
+::Instructions of the game
+:instructions
+cls
+echo Instructions
+echo ---------
+echo Select between choices to guarantee you a healthy fate and
+echo maintain your health greater than 0
+echo ---------
+echo 1.Return
+echo.
+choice /c 1 /m "Return?"
+
+if %errorlevel% equ 1 (
+    goto helpmenu
+)
+
+goto aboutmenu
+
+:start
+cls
 SETLOCAL EnableDelayedExpansion
 cd %~dp0
 echo Welcome back in MiniBatch Alpha v0.1.9!
@@ -13,13 +127,16 @@ echo Press any key to continue
 pause >nul
 goto main
 
+
+
 :main
 color 07
 cls
 echo 1. Go mine
 echo 2. Go fight
 echo 3. Go chop
-choice /c 123 /m "What do you want to do?"
+echo 4. Return to Main menu
+choice /c 1234 /m "What do you want to do?"
 if %errorlevel% equ 1 (
     goto mine
 )
@@ -28,6 +145,9 @@ if %errorlevel% equ 2 (
 )
 if %errorlevel% equ 3 (
     goto chop
+)
+if %errorlevel% equ 4 (
+    goto mainmenu
 )
 
 :mine
